@@ -1,6 +1,8 @@
 # ChatGTP4-Summary
 
-## PostgreSQL vs MySQL
+> 合理利用3小时👽
+
+### PostgreSQL vs MySQL
 <img width="342" alt="image" src="https://github.com/szy0syz/ChatGTP4-Summary/assets/10555820/6b023675-0ce3-423f-a69e-1755ebcbad62">
 
 ```
