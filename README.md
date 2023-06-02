@@ -50,7 +50,7 @@
 3. 对于高容量主题和复杂的流处理拓扑，你可能需要部署一群机器来共享流处理工作负载。Kafka Streams在这里帮助你，为你处理所有的分布式状态问题。它将状态管理在堆外，将其持久化到本地磁盘，并将同样的状态持久化到Kafka集群中的内部主题。
 4. Kafka Streams是一个Java库，而不是一些新的专用基础设施组件。这使得你可以轻松地启动使用其他框架的服务，如Spring Boot或Micronaut，将它们转化为复杂的、可扩展的、容错的流处理应用程序。
 
-## Kafka Streams 101: Getting Started (2023) - 01
+## 01 Kafka Streams 101: Getting Started (2023)
 
 <img width="821" alt="image" src="https://github.com/szy0syz/ChatGTP4-Summary/assets/10555820/aabf9129-31f7-4517-aa72-8cf2a057ad97">
 
@@ -74,3 +74,21 @@ Kafka Streams是声明式的，所以你只需要声明你想做什么，而不�
 - 如何开始使用Kafka Streams：要开始使用Kafka Streams，你可以去屏幕上的URL，点击"try free"按钮，然后输入你的名字、电子邮件和密码。这个电子邮件和密码将被用来稍后登录到Confluent Cloud，所以一定要记住它。点击"start free"按钮，然后查看你的收件箱，等待确认邮件以继续。你的确认邮件中的链接将引导你到下一步，你可以在那里选择基本的、标准的或专用的集群。相关的费用都列出来了，但是为你提供的免费启动金额将足以覆盖这个课程所需的一切。
 
 总的来说，这个视频介绍了Apache Kafka和Kafka Streams的基础知识，包括Kafka的主题、生产者和消费者客户端API、Kafka Connect以及如何使用Kafka Streams进行流处理。视频还提供了一个实例，说明如何使用Kafka Streams过滤特定类型的小部件。最后，视频介绍了如何开始使用Kafka Streams，包括如何在Confluent Cloud上创建一个新的集群。
+
+## 02 Kafka Streams 101: Basic Operations (2023)
+
+<img width="644" alt="image" src="https://github.com/szy0syz/ChatGTP4-Summary/assets/10555820/a07603a3-139c-4288-adc8-a2c9b6f0735e">
+
+这个视频是由 Confluent 发布的，主题是 Kafka Streams 101: Basic Operations。视频中，主讲人 Sylvia Blee Goldman 介绍了 Kafka Streams 的一些基本操作。
+
+Kafka Streams 是处理无限序列事件（称为事件流）的工具。事件流类似于 Kafka 中的主题，它们是记录的序列，这些记录就像 Kafka 中的键值对。在 Kafka Streams 中，每个记录都是一个独立的事件，即使两个记录具有相同的键，它们也没有任何关系。
+
+在定义 Kafka Streams 应用程序时，实际上是在定义一个处理器拓扑，这是一个有向无环图（DAG），其中包含处理节点和表示事件流流动的边。每个处理器拓扑通常都有源节点、用户处理器节点和同步处理器节点。数据从源节点开始，经过一个或多个用户处理器节点，最后到达同步处理器节点，然后由生产者将数据发送回 Kafka 的新主题。
+
+要定义 Kafka Streams 应用程序，首先需要创建 StreamsBuilder 类的实例，然后使用这个构建器创建 KStream，这是 Kafka Streams 对事件流的抽象，也是 Kafka Streams 的基本构建单元。可以使用 builder.stream 创建 KStream，它需要一个输入主题（要从中流式传输事件的主题名称）和一个消费配置对象。
+
+在获取 KStream 之后，可以进行一些操作，如数据转换。Kafka Streams 提供了映射操作，可以使用 map 或 mapValues 操作符进行映射。mapValues 操作符接受一个值映射器，可以用它来生成新的值。map 操作符则接受键和值，并允许生成新的键和值。在 Kafka Streams 中，如果可以使用 mapValues，应优先使用它，除非真的需要改变键。
+
+Kafka Streams 还提供了过滤器，可以在 KStream 上定义过滤器，决定哪些事件应该从事件流中过滤掉，哪些应该保留。过滤器创建一个新的事件流，只包含关心的事件。在过滤器中，可以访问键和值，并定义一个谓词，返回是否要保留它们。
+
+视频的最后部分是一个关于如何构建 Kafka Streams 应用程序的练习。
