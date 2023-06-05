@@ -110,3 +110,17 @@ KTable和KStream一样，许多简单的操作符都适用，你可以映射值�
 视频中还介绍了一种特殊的KTable，称为全局KTable。要理解KTable和全局KTable的区别，你需要更深入地了解Kafka Streams的架构，这主要与分区有关。Kafka将主题划分为分区，分区只是主题中数据的逻辑子集，将按键进行分区，这意味着所有具有相同键的事件都会在同一分区中结束。在Kafka Streams中，分区很重要，因为Kafka Streams一次只处理一个分区。一个典型的KTable一次只会看到该主题的一个分区的数据子集，这使得Kafka Streams可以扩展。
 
 另一方面，全局KTable实际上确实持有所有分区的所有记录。这在你想要获取整个主题的所有数据的视图时非常有用，通常这是对较小的、静态的、不经常更新的数据进行操作，例如邮政编码、国家代码等，这些数据并不像事件流那样连续变化。
+
+## Count Millions of Rows Fast with Materialized Views: Databases for Developers: Performance #6
+
+<img width="838" alt="image" src="https://github.com/szy0syz/ChatGTP4-Summary/assets/10555820/d5fa929e-edb1-4c46-a4ce-b5746b184d34">
+
+这个视频是由"The Magic of SQL"频道发布的，标题为"Count Millions of Rows Fast with Materialized Views: Databases for Developers: Performance #6"。视频的主要内容是介绍如何使用物化视图（Materialized Views）快速计算大量行的数据。
+
+视频中，作者首先解释了物化视图与普通视图的区别。普通视图只存储SQL语句的文本，而物化视图则存储SQL语句的结果。当查询物化视图时，数据库不会访问基础表，而是直接返回预先计算的结果，这可以大大提高查询效率，尤其是在需要读取数百万或数十亿行但只返回少量结果的情况下。
+
+然后，作者介绍了物化视图的创建和使用。如果应用程序中的SQL查询与物化视图中的查询匹配，数据库可以自动读取物化视图，而不是基础表，这称为查询重写（Query Rewrite）。这种方式可以在不更改任何代码的情况下获得巨大的性能优势。
+
+然而，物化视图的数据必须与基础表的数据完全匹配，否则数据库将无法进行查询重写。为了解决这个问题，可以使用DBMS_MVIEW.refresh方法来更新物化视图，使其与基础表的数据保持一致。此外，还可以创建物化视图日志（Materialized View Log）来记录表的变化，从而实现物化视图的快速刷新。
+
+作者还提到了一些物化视图的限制和注意事项，例如某些类型的查询无法进行快速刷新，以及在写入密集的应用程序中，物化视图可能会增加数据库的压力。最后，作者介绍了实时物化视图（Real Time Materialized Views）的概念，这是一种在查询运行时应用日志变化的方法，可以避免在每个事务中刷新物化视图，同时仍然能够获得良好的查询性能。
