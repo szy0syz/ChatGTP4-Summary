@@ -95,6 +95,8 @@ Kafka Streams 还提供了过滤器，可以在 KStream 上定义过滤器，决
 
 ## Kafka Streams 101: KTable
 
+<img width="976" alt="image" src="https://github.com/szy0syz/ChatGTP4-Summary/assets/10555820/be5732d8-3a1c-4f84-9d4d-eb6891b46cd4">
+
 这个视频是由Confluent发布的，标题为"Kafka Streams 101: KTable (2023)"，主要介绍了Kafka表（KTable）的基础知识。
 
 视频中，Sylvia Goldman从Confluent开始讲解了KTable的概念和使用方法。在之前的模块中，她讨论了事件流，这是一系列独立的键值对。与此相反，更新流也是键值对的序列，但每个更新流都是应用于前一个值的更新。这意味着具有相同键的记录实际上正在更新具有相同键的前一个记录的值。
